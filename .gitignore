@@ -1,0 +1,50 @@
+# ======================
+# ⚙️ AIRFLOW / DOCKER
+# ======================
+logs/
+airflow.cfg
+unittests.cfg
+*.pid
+*.db
+*.sqlite
+
+# Docker compose environment
+.env
+
+# ======================
+# 🐍 PYTHON
+# ======================
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+*.log
+
+# Virtual environment
+venv/
+.env/
+
+# ======================
+# 🧩 VSCODE / IDE
+# ======================
+.vscode/
+.idea/
+
+# ======================
+# 📦 DADOS E SAÍDAS
+# ======================
+# Ignora dados brutos e temporários
+data/
+tmp/
+*.parquet
+
+# Excetua JSONs importantes de configuração
+# (por exemplo, settings, config)
+!dags/config/*.json
+
+# ======================
+# 🧱 SISTEMA / WINDOWS
+# ======================
+Thumbs.db
+desktop.ini
+.DS_Store
