@@ -1,3 +1,4 @@
+# dags/ingestion/ibge_to_gcs.py
 from ingestion.gcp import GCP
 from ingestion.ibge import Ibge
 from config.settings import BUCKET_NAME, GCP_CONN_ID, SYSTEM, IBGE_BASE_URL
@@ -11,8 +12,13 @@ class IbgeToGcs:
 
     def run(self, table_path: str, dt: str | None = None) -> str:
         df = self.ibge.get_df(table_path)
+        bad = [c for c in df.columns if "." in c]
+        if bad:
+            raise ValueError(f"Colunas inválidas com ponto: {bad}")
+
         table = table_path.split("/")[-1]
         return self.gcp.send_parquet(df, self.system, table, dt=dt)
+
 
 def ibge_to_gcs(table_path: str, dt: str | None = None) -> str:
     pipeline = IbgeToGcs()

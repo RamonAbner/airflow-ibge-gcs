@@ -2,7 +2,6 @@ from __future__ import annotations
 from datetime import date
 from io import BytesIO
 from typing import Optional
-
 import pandas as pd
 from google.cloud import storage
 from airflow.providers.google.common.hooks.base_google import GoogleBaseHook
