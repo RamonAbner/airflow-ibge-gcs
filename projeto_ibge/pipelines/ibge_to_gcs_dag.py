@@ -6,7 +6,6 @@ from airflow.providers.google.cloud.operators.bigquery import (
     BigQueryInsertJobOperator,
     BigQueryCreateEmptyDatasetOperator,
 )
-
 from ingestion.ibge_to_gcs import ibge_to_gcs
 from config.settings import (
     TIMEZONE,
