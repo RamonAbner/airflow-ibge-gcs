@@ -1,6 +1,6 @@
 import pendulum
 from airflow import DAG
-from airflow.operators.python import PythonOperator
+from airflow.operators.python import PythonOperator # type: ignore[reportMissingImports]
 from ingestion.ibge_to_gcs import ibge_to_gcs
 from config.settings import TIMEZONE, SCHEDULE
 
