@@ -1,7 +1,7 @@
 import pendulum
 from airflow import DAG
 import datetime
-from airflow.operators.python import PythonOperator
+from airflow.operators.python import PythonOperator # type: ignore
 from airflow.providers.google.cloud.operators.bigquery import (
     BigQueryInsertJobOperator,
     BigQueryCreateEmptyDatasetOperator,
