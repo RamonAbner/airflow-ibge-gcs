@@ -1,11 +1,10 @@
 from __future__ import annotations
-from datetime import date
+from datetime import date, datetime
 from io import BytesIO
 from typing import Optional
 import pandas as pd
 from google.cloud import storage
 from airflow.providers.google.common.hooks.base_google import GoogleBaseHook
-
 
 class GCP:
 
@@ -24,15 +23,22 @@ class GCP:
 
         dt_str = dt or date.today().isoformat()
         yyyy, mm, dd = dt_str.split("-")
-        blob_path = f"{system}/{table}/year={yyyy}/month={mm}/day={dd}/part-0000.parquet"
+
+        
+        now = datetime.now().strftime("%Y%m%d%H%M%S")
+        blob_path = f"{system}/{table}/year={yyyy}/month={mm}/day={dd}/part-{now}.parquet"
 
         buf = BytesIO()
-        
         df.to_parquet(buf, index=False, compression="snappy", engine="pyarrow")
         buf.seek(0)
 
         blob = self.bucket.blob(blob_path)
-        blob.upload_from_file(buf, content_type="application/vnd.apache.parquet")
 
         
+        blob.upload_from_file(
+            buf,
+            content_type="application/vnd.apache.parquet",
+            if_generation_match=0
+        )
+
         return f"gs://{self.bucket_name}/{blob_path}"

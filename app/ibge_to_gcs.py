@@ -1,6 +1,5 @@
-# dags/ingestion/ibge_to_gcs.py
-from ingestion.gcp import GCP
-from ingestion.ibge import Ibge
+from infrastructure.gcp import GCP
+from infrastructure.ibge import Ibge
 from config.settings import BUCKET_NAME, GCP_CONN_ID, SYSTEM, IBGE_BASE_URL
 
 

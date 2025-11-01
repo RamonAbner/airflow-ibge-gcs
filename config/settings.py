@@ -1,4 +1,5 @@
 BQ_PROJECT = "meu-projeto-medalha"
+BQ_DATASET_RAW = "ibge_raw"
 BQ_DATASET_BRONZE = "ibge_bronze"
 BQ_LOCATION = "US"
 BUCKET_NAME = "rm_cm_landing"
